@@ -19,5 +19,8 @@ public class HomeController {
     @Autowired
     HomeService service;
 
-
+    @GetMapping("/")
+    public String home() {
+        return "home";
+    }
 }

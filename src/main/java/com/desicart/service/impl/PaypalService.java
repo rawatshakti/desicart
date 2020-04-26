@@ -21,7 +21,7 @@ import com.paypal.base.rest.PayPalRESTException;
 @Service
 public class PaypalService implements IPaypalService {
 
-    @Autowired
+//    @Autowired
     private APIContext apiContext;
 
 

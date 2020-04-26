@@ -19,4 +19,8 @@ public class InventoryController {
     @Autowired
     InventoryService service;
 
+    @GetMapping("/cart")
+    public String cart() {
+        return "cart";
+    }
 }
