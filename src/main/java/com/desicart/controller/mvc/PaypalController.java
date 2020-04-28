@@ -1,6 +1,6 @@
 package com.desicart.controller.mvc;
 
-import com.desicart.model.Order;
+import com.desicart.data.model.Order;
 import com.desicart.service.impl.PaypalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,15 +22,9 @@ public class PaypalController {
     public static final String SUCCESS_URL = "pay/success";
     public static final String CANCEL_URL = "pay/cancel";
 
-    @GetMapping("/")
-    public String home() {
-        return "home";
-    }
 
-    @GetMapping("/cart")
-    public String cart() {
-        return "cart";
-    }
+
+
 
     @PostMapping("/pay")
     public String payment(@ModelAttribute("order") Order order) {

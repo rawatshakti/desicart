@@ -1,4 +1,4 @@
-package com.desicart.model;
+package com.desicart.data.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

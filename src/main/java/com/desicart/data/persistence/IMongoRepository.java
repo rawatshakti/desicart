@@ -1,10 +1,10 @@
-package com.desicart.data;
+package com.desicart.data.persistence;
 
-import com.desicart.model.Product;
+import com.desicart.data.model.Product;
 
 import java.util.List;
 
-public interface IRepository {
+public interface IMongoRepository {
 
     List<Product> getProducts();
     Product getProducts(String productId);
