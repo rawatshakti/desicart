@@ -1,11 +1,11 @@
-package com.desicart.data.impl;
+package com.desicart.data.persistence.impl;
 
-import com.desicart.data.IRepository;
-import com.desicart.model.Product;
+import com.desicart.data.persistence.IMongoRepository;
+import com.desicart.data.model.Product;
 
 import java.util.List;
 
-public class MongoRepository implements IRepository {
+public class MongoRepositoryImpl implements IMongoRepository {
     @Override
     public List<Product> getProducts() {
         return null;

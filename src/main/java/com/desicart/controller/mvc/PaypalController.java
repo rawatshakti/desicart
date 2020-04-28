@@ -1,6 +1,6 @@
 package com.desicart.controller.mvc;
 
-import com.desicart.model.Order;
+import com.desicart.data.model.Order;
 import com.desicart.service.impl.PaypalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

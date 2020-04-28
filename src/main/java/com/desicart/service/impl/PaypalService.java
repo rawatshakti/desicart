@@ -22,7 +22,7 @@ import com.paypal.base.rest.PayPalRESTException;
 public class PaypalService implements IPaypalService {
 
 //    @Autowired
-    private APIContext apiContext;
+    private APIContext apiContext = null;
 
 
     @Override

@@ -4,10 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class desicartApplication {
+//@EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
+public class DesicartApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(desicartApplication.class, args);
+        SpringApplication.run(DesicartApplication.class, args);
         //openHomePage();
 
     }
