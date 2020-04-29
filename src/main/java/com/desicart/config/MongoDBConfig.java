@@ -26,7 +26,7 @@ public class MongoDBConfig {
 //        MongoClientOptions options = new MongoClientOptions.Builder().sslEnabled(true).build();
 //        MongoClient client = new MongoClient(address, credential, options);
 
-        MongoClient client = new MongoClient(new MongoClientURI("mongodb+srv://ultimatepda:April%23123@cluster0-hdo9y.mongodb.net/test?retryWrites=true&w=majority"));
+        MongoClient client = new MongoClient(new MongoClientURI("mongodb+srv://<user>:<password>@cluster0-hdo9y.mongodb.net/test?retryWrites=true&w=majority"));
 
         return client;
     }
