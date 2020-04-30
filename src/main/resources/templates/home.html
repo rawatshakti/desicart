@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <link rel="stylesheet" type="text/css" href="\src\main\resources\templates\desicart.css">-->
     <picture>
         <source srcset="C:\Users\sagar\Desktop\desicart\aisle_light.jpg" media="(max-width: 600px)">
         <source srcset="C:\Users\sagar\Desktop\desicart\bag.jpg" media="(max-width: 1500px)">
@@ -15,8 +16,9 @@
 }
 .menu {
   float:left;
-  width:10%;
+  width:15%;
   text-align:center;
+  background-image: url("C:\Users\sagar\Desktop\desicart\aisle_light.jpg");
 }
 .menu a {
   background-color:#e5e5e5;
@@ -30,14 +32,17 @@
   float:left;
   width:80%;
   padding:0 20px;
+  margin-top:7px;
+  background-image: url("C:\Users\sagar\Desktop\desicart\aisle_light.jpg");
 }
 .right {
   background-color:#e5e5e5;
   float:left;
-  width:10%;
+  width:5%;
   padding:15px;
   margin-top:7px;
   text-align:center;
+  background-image: url("C:\Users\sagar\Desktop\desicart\aisle_light.jpg");
 }
 
 @media only screen and (max-width:620px) {
@@ -59,6 +64,10 @@
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;
+  background-image: url("C:\Users\sagar\Desktop\desicart\aisle_light.jpg");
+  height:70%;
+  overflow:auto;
+
 }
 
 input[type=text] {
@@ -79,6 +88,8 @@ table {
   border-spacing: 0;
   width: 100%;
   border: 1px solid #ddd;
+  height:100%;
+  overflow:auto;
 }
 
 th, td {
@@ -87,11 +98,30 @@ th, td {
 }
 
 tr:nth-child(even){background-color: #f2f2f2}
+
+body  {
+  background-image: url("C:\Users\sagar\Desktop\desicart\aisle_light.jpg");
+  background-color: #cccccc;
+}
+
+.tableBodyScroll tbody {
+  display: block;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.tableBodyScroll thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
 </style>
 </head>
-<body style="font-family:Verdana;color:#aaaaaa;">
+<body style="font-family:Verdana;color:#aaaaaa;overflow:hidden;">
 
-<div class="container">
+<div class="container" style="height:20%">
     <div style="background-color:cyan;padding:15px;text-align:right;" >
         <h1>Desi Cart</h1>
     </div>
@@ -100,17 +130,17 @@ tr:nth-child(even){background-color: #f2f2f2}
     </div>
 </div>
 
-<div style="overflow:auto">
+<div style="overflow:auto;">
     <div class="menu">
         <img src="C:/Users/sagar/Desktop/desicart/bag.jpg" alt="bag" style="width:auto;">
-<!--        <a href="#">Vendors</a>-->
-<!--        <a href="#">Products</a>-->
+        <a href="#">Vendors</a>
+        <a href="#">Products</a>
 
     </div>
 
     <div class="main">
         <div class="container-main">
-            <form method="POST" enctype="multipart/form-data" th:object="${vendorViewModel}" action="/vendor/inventory">
+            <form style="height:20%;" method="POST" enctype="multipart/form-data" th:object="${vendorViewModel}" action="/vendor/inventory">
                 <div >
                     <label for="selectVendor" class="input-label-name">Select Vendor</label>
                     <select id="selectVendor" required="required" th:field="*{id}" style="width:50%">
@@ -125,10 +155,10 @@ tr:nth-child(even){background-color: #f2f2f2}
                 </div>
                 <input type="submit" value="Get Products" class="btn">
             </form>
-            <form method="POST" enctype="multipart/form-data" th:object="${vendorViewModel}" action="/vendor/inventory">
-                <div style="overflow-x:auto;">
+            <form style="height:80%;" method="POST" enctype="multipart/form-data" th:object="${vendorViewModel}" action="/vendor/inventory">
+                <div >
                     <label for="productTable" class="input-label-name">Products</label>
-                    <table id="productTable">
+                    <table id="productTable" class="tableBodyScroll">
                         <tr>
                             <th></th>
                             <th>Handle</th>
@@ -161,7 +191,7 @@ tr:nth-child(even){background-color: #f2f2f2}
     </div>
 </div>
 
-<div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© copyright desicart.com</div>
+<div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;height:10%">© copyright desicart.com</div>
 
 </body>
 </html>
