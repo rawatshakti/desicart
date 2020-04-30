@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--layout:decorate="~{layouts/layout}"-->
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -126,13 +128,44 @@ span.price {
 <div class="row">
     <div class="col-50">
         <div class="container">
-            <form method="get"  action="/cart">
-                <h4>Add items to Cart</h4>
-                <p><a href="#">Product 1</a> <span class="price">$1 </span><a>+</a></p>
-                <p><a href="#">Product 2</a> <span class="price">$4 </span><a>+</a></p>
-                <p><a href="#">Product 3</a> <span class="price">$3 </span><a>+</a></p>
-                <p><a href="#">Product 4</a> <span class="price">$2 </span><a>+</a></p>
-                <hr>
+            <form method="POST" enctype="multipart/form-data" th:object="${vendorViewModel}" action="/vendor/inventory">
+                <div class="dropdown">
+                    <label for="selectVendor" class="input-label-name">Select Vendor</label>
+                    <select id="selectVendor" required="required" th:field="*{id}">
+                        <option value=""></option>
+                        <option
+                                th:each="vendor, iSat : ${vendors}"
+                                th:value="${vendor.id}"
+                                th:with="test=${vendor.name}"
+                                th:text="${vendor.name}">
+                        </option>
+                    </select>
+                </div>
+                <input type="submit" value="Get Products" class="btn">
+            </form>
+            <form method="POST" enctype="multipart/form-data" th:object="${vendorViewModel}" action="/vendor/inventory">
+                <div class="table">
+                    <label for="productTable" class="input-label-name">Products</label>
+                    <table id="productTable">
+                        <tr>
+                            <th>Handle</th>
+                            <th>Title</th>
+                            <th>Type</th>
+                            <th>Tags</th>
+<!--                            <th>IN STOCK</th>-->
+                        </tr>
+                        <tr th:each="prod,iterStat : ${products}" th:class="${iterStat.odd}? 'odd'">
+                            <td th:text="${prod.handle}">Onions</td>
+                            <td th:text="${prod.title}">2.41</td>
+                            <td th:text="${prod.type}">Onions</td>
+                            <td th:text="${prod.tags}">2.41</td>
+<!--                            <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>-->
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    <a href="../home.html" th:href="@{/}">Return to home</a>
+                </p>
                 <input type="submit" value="Goto Cart" class="btn">
             </form>
         </div>

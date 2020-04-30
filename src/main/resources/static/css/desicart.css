@@ -1,0 +1,107 @@
+
+* {
+  box-sizing: border-box;
+}
+.menu {
+  float:left;
+  width:%;
+  text-align:center;
+  background-image: url("C:\Users\sagar\Desktop\desicart\aisle_light.jpg");
+}
+.menu a {
+  background-color:#e5e5e5;
+  padding:8px;
+  margin-top:7px;
+  display:block;
+  width:100%;
+  color:black;
+}
+.main {
+  float:left;
+  width:80%;
+  padding:0 20px;
+  margin-top:7px;
+  background-image: url("C:\Users\sagar\Desktop\desicart\aisle_light.jpg");
+}
+.right {
+  background-color:#e5e5e5;
+  float:left;
+  width:10%;
+  padding:15px;
+  margin-top:7px;
+  text-align:center;
+  background-image: url("C:\Users\sagar\Desktop\desicart\aisle_light.jpg");
+}
+
+@media only screen and (max-width:620px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width:100%;
+  }
+}
+
+.container {
+  display: flex;
+}
+.container > div {
+  flex: 1; /*grow*/
+}
+
+.container-main {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  background-image: url("C:\Users\sagar\Desktop\desicart\aisle_light.jpg");
+  height:70%;
+  overflow:auto;
+
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  height:100%;
+  overflow:auto;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+body  {
+  background-image: url("C:\Users\sagar\Desktop\desicart\aisle_light.jpg");
+  background-color: #cccccc;
+}
+
+.tableBodyScroll tbody {
+  display: block;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.tableBodyScroll thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+

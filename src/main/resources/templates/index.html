@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design for Bootstrap</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Start your project here-->
+  <div class="container" style="height:20%">
+    <div style="background-color:cyan;padding:15px;text-align:right;" >
+      <h1>Desi Cart</h1>
+    </div>
+    <div style="background-color:cyan;padding:15px;text-align:right;">
+      <a href="#">Login</a>
+    </div>
+  </div>
+
+  <div style="overflow:auto;">
+    <div class="menu">
+      <img src="C:/Users/sagar/Desktop/desicart/bag.jpg" alt="bag" style="width:auto;">
+      <a href="#">Vendors</a>
+      <a href="#">Products</a>
+
+    </div>
+
+    <div class="main">
+      <div class="container-main">
+        <form style="height:20%;" method="POST" enctype="multipart/form-data" th:object="${vendorViewModel}" action="/vendor/inventory">
+          <div >
+            <label for="selectVendor" class="input-label-name">Select Vendor</label>
+            <select id="selectVendor" required="required" th:field="*{id}" style="width:50%">
+              <option value=""></option>
+              <option
+                      th:each="vendor, iSat : ${vendors}"
+                      th:value="${vendor.id}"
+                      th:with="test=${vendor.name}"
+                      th:text="${vendor.name}">
+              </option>
+            </select>
+          </div>
+          <input type="submit" value="Get Products" class="btn">
+        </form>
+        <form style="height:80%;" method="POST" enctype="multipart/form-data" th:object="${vendorViewModel}" action="/vendor/inventory">
+          <div >
+            <label for="productTable" class="input-label-name">Products</label>
+            <table id="productTable" class="tableBodyScroll">
+              <tr>
+                <th>Quantity</th>
+                <th>Id</th>
+                <th>Handle</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Tags</th>
+                <th>Price</th>
+                <th>Image</th>
+                <!--                            <th>IN STOCK</th>-->
+              </tr>
+              <tr th:each="prod,iterStat : ${products}" th:class="${iterStat.odd}? 'odd'">
+                <td><span class="table-add"><button type="button" class="btn btn-rounded btn-sm my-0">+</button></span>
+                  <span id="count"></span>-</td>
+                <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">-</button></span>
+                <td th:text="${prod.id}"></td>
+                <td th:text="${prod.handle}"></td>
+                <td th:text="${prod.title}"></td>
+                <td th:text="${prod.type}"></td>
+                <td th:text="${prod.tags}"></td>
+                <td th:text="${prod.variantPrice}"></td>
+                <td><img  th:src="${prod.imageSrc}" th:title="${prod.title}" th:alt="${prod.imageAltText}" /></td>
+                <!--                            <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>-->
+              </tr>
+            </table>
+          </div>
+          <p>
+            <a href="../home.html" th:href="@{/}">Return to home</a>
+          </p>
+          <input type="submit" value="Goto Cart" class="btn">
+        </form>
+      </div>
+    </div>
+
+    <div class="right">
+      <h2>About</h2>
+      <p>Desicart is here to address all your needs during this pandemic situation.</p>
+    </div>
+  </div>
+
+  <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;height:10%">© copyright desicart.com</div>
+
+  <!-- End your project here-->
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Your custom scripts (optional) -->
+  <script type="text/javascript"></script>
+
+</body>
+</html>

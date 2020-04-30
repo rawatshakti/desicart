@@ -1,58 +1,100 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-body {
-  font-family: Arial;
-  font-size: 17px;
-  padding: 8px;
-}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <link rel="stylesheet" type="text/css" href="\src\main\resources\templates\desicart.css">-->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+    <script>
+
+    $(document).ready(function () {
+        $( ":button" ).click(function() {
+
+              var idArr = this.id.split("_");
+              var currentCount = parseInt($("#count_" + idArr[1]).text());
+              var itemPrice = parseFloat($("#price_" + idArr[1]).text());
+
+              if(!isNaN(currentCount))
+              {
+                  if(idArr[0] === "add")
+                  {
+                    currentCount+=1;
+                  }
+                  else
+                  {
+                    if(currentCount > 0)
+                    {
+                        currentCount-=1;
+                    }
+                  }
+
+                  $("#count_" + idArr[1]).text(currentCount);
+                  $("#qtyPrice_" + idArr[1]).text(currentCount * itemPrice);
+              }
+        });
+    });
+
+    </script>
+
+    <style>
 * {
   box-sizing: border-box;
 }
-
-.row {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-  margin: 0 -16px;
+.menu {
+  float:left;
+  width:10%;
+  text-align:center;
+  background-image: url("../static/images/aisle_light.jpg");
+}
+.menu a {
+  background-color:#e5e5e5;
+  padding:8px;
+  margin-top:7px;
+  display:block;
+  width:100%;
+  color:black;
+}
+.main {
+  float:left;
+  width:80%;
+  padding:0 20px;
+  margin-top:7px;
+  background-image: url("../static/images/aisle_light.jpg");
+}
+.right {
+  background-color:#e5e5e5;
+  float:left;
+  width:10%;
+  padding:15px;
+  margin-top:7px;
+  text-align:center;
+  background-image: url("../static/images/aisle_light.jpg");
 }
 
-.col-25 {
-  -ms-flex: 25%; /* IE10 */
-  flex: 25%;
-}
-
-.col-50 {
-  -ms-flex: 50%; /* IE10 */
-  flex: 50%;
-}
-
-.col-75 {
-  -ms-flex: 75%; /* IE10 */
-  flex: 75%;
-}
-
-.col-100 {
-  -ms-flex: 100%; /* IE10 */
-  flex: 100%;
-}
-
-.col-25,
-.col-50,
-.col-75 {
-  padding: 0 16px;
+@media only screen and (max-width:620px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width:100%;
+  }
 }
 
 .container {
+  display: flex;
+}
+.container > div {
+  flex: 1; /*grow*/
+}
+
+.container-main {
   background-color: #f2f2f2;
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;
+  background-image: url("../static/images/aisle_light.jpg");
+  height:70%;
+  overflow:auto;
+
 }
 
 input[type=text] {
@@ -68,78 +110,132 @@ label {
   display: block;
 }
 
-.icon-container {
-  margin-bottom: 20px;
-  padding: 7px 0;
-  font-size: 24px;
-}
-
-.btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
   width: 100%;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 17px;
+  border: 1px solid #ddd;
+  height:100%;
+  overflow:auto;
 }
 
-.btn:hover {
-  background-color: #45a049;
+th, td {
+  text-align: left;
+  padding: 8px;
 }
 
-a {
-  color: #2196F3;
+tr:nth-child(even){background-color: #f2f2f2}
+
+body  {
+  background-image: url("../static/images/aisle_light.jpg");
+  background-color: #cccccc;
 }
 
-hr {
-  border: 1px solid lightgrey;
+.tableBodyScroll tbody {
+  display: block;
+  max-height: 400px;
+  overflow-y: scroll;
 }
 
-span.price {
-  float: right;
-  color: grey;
+.tableBodyScroll thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
-@media (max-width: 800px) {
-  .row {
-    flex-direction: column-reverse;
-  }
-  .col-25 {
-    margin-bottom: 20px;
-  }
-}
-
-    </style>
+</style>
 </head>
-<body>
-<div class="row">
-    <div class="col-100">
-        <div class="container">
-            <h1>Desi Cart - for your desi needs</h1>
-        </div>
+<body style="font-family:Verdana;color:#aaaaaa;overflow:hidden;">
+
+<div class="container" >
+    <div style="background-color:cyan;padding:15px;text-align:right;" >
+        <h1>Desi Cart</h1>
+    </div>
+    <div style="background-color:cyan;padding:15px;text-align:right;">
+        <a href="#">Login</a>
     </div>
 </div>
-<div class="row">
-    <div class="col-50">
-        <div class="container">
-            <form method="get"  action="/cart">
-                <h4>Add items to Cart</h4>
-                <p><a href="#">Product 1</a> <span class="price">$1 </span><a>+</a></p>
-                <p><a href="#">Product 2</a> <span class="price">$4 </span><a>+</a></p>
-                <p><a href="#">Product 3</a> <span class="price">$3 </span><a>+</a></p>
-                <p><a href="#">Product 4</a> <span class="price">$2 </span><a>+</a></p>
-                <hr>
-                <input type="submit" value="Goto Cart" class="btn">
+
+<div style="overflow:auto;">
+    <div class="menu">
+        <img src="../static/images/bag.jpg" alt="bag" style="width:auto;">
+        <a href="#">Vendors</a>
+        <a href="#">Products</a>
+
+    </div>
+
+    <div class="main">
+        <div class="container-main">
+            <form method="POST" enctype="multipart/form-data" th:object="${vendorViewModel}" action="/vendor/inventory">
+                <div >
+                    <div style="float:left;padding-left:10px;">
+                        <label for="selectVendor" class="input-label-name">Select Vendor</label>
+                    </div>
+                    <div style="float:left;padding-left:10px;">
+
+                        <select id="selectVendor" required="required" th:field="*{id}" style="width:90%">
+                            <option value=""></option>
+                            <option
+                                    th:each="vendor, iSat : ${vendors}"
+                                    th:value="${vendor.id}"
+                                    th:with="test=${vendor.name}"
+                                    th:text="${vendor.name}">
+                            </option>
+                        </select>
+                    </div>
+                    <div style="float:left;padding-left:10px;">
+                        <input type="submit" value="Get Products" class="btn">
+                    </div>
+            </div>
+            </form>
+            <form method="POST" enctype="multipart/form-data" th:object="${vendorViewModel}" action="/vendor/inventory">
+                <div style="padding-top: 50px;">
+<!--                    <label for="productTable" class="input-label-name">Products</label>-->
+                    <table id="productTable" class="tableBodyScroll">
+                        <tr>
+                            <th>Quantity</th>
+                            <th>QtyPrice</th>
+                            <th>Handle</th>
+                            <th>Title</th>
+                            <th>Type</th>
+                            <th>Tags</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <!--                            <th>IN STOCK</th>-->
+                        </tr>
+                        <tr th:id="${prod.id}" th:each="prod,iterStat : ${products}" th:class="${iterStat.odd}? 'odd'">
+                            <td><span class="table-add"><button th:id="'add_' + ${prod.id}" type="button" class="btn btn-rounded btn-sm my-0">+</button></span>
+                                <span th:id="'count_' + ${prod.id}" >0</span>
+                                <span class="table-remove"><button  th:id="'remove_' + ${prod.id}" type="button" class="btn btn-danger btn-rounded btn-sm my-0">-</button></span>
+                            </td>
+                            <td><span th:id="'qtyPrice_' + ${prod.id}" >0</span></td>
+                            <td th:text="${prod.handle}"></td>
+                            <td th:text="${prod.title}"></td>
+                            <td th:text="${prod.type}"></td>
+                            <td th:text="${prod.tags}"></td>
+                            <td th:id="'price_' + ${prod.id}" th:text="${prod.variantPrice}"></td>
+                            <td><img height="50px" width="100px" th:src="${prod.imageSrc}" th:title="${prod.title}" th:alt="${prod.imageAltText}" /></td>
+                            <!--                            <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>-->
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    <a href="home.html" th:href="@{/vendor/}">Return to home</a>
+                    <input type="submit" value="Goto Cart" class="btn">
+                </p>
+
             </form>
         </div>
     </div>
-    <div class="col-50">
+
+    <div class="right">
+        <h2>About</h2>
+        <p>Desicart is here to address all your needs during this pandemic situation.</p>
     </div>
 </div>
+
+<div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;height:10%">© copyright desicart.com</div>
 
 </body>
 </html>
