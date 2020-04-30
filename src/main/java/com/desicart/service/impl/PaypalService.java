@@ -21,6 +21,9 @@ import com.paypal.base.rest.PayPalRESTException;
 @Service
 public class PaypalService implements IPaypalService {
 
+    //Reference: https://www.youtube.com/watch?v=GykDyG0ELms
+    //Reference: https://github.com/Java-Techie-jt/spring-boot-paypal-example
+
 //    @Autowired
     private APIContext apiContext = null;
 

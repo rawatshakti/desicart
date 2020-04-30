@@ -43,7 +43,7 @@ public class ProductMongoRepositoryImpl implements IProductMongoRepository {
     @Override
     public List<Product> getProductsByNameLike(String name) {
         Query query = new Query ();
-        query.addCriteria(Criteria.where("Title").regex("/"+name+"/"));
+        query.addCriteria(Criteria.where("Title").regex(name));
         List<Product> products = mongoTemplate.find(query, Product.class, "Product");
 
         return products;
@@ -53,7 +53,7 @@ public class ProductMongoRepositoryImpl implements IProductMongoRepository {
     public List<Product> getProductsByVendorAndName(String vendor, String name) {
         Query query = new Query ();
         query.addCriteria(Criteria.where("Vendor").is(vendor));
-        query.addCriteria(Criteria.where("Title").regex("/"+name+"/"));
+        query.addCriteria(Criteria.where("Title").regex(name));
         List<Product> products = mongoTemplate.find(query, Product.class, "Product");
 
         return products;
