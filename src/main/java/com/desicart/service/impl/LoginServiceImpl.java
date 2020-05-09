@@ -1,23 +1,35 @@
 package com.desicart.service.impl;
 
-import com.desicart.data.model.dbUserDetails;
-import com.desicart.data.persistence.ILoginMongoRepositoryImpl;
-import com.desicart.data.viewmodel.LoginViewModel;
+import com.desicart.data.model.User;
+import com.desicart.data.persistence.IUserMongoRepository;
 import com.desicart.service.ILoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class LoginServiceImpl implements ILoginService {
     @Autowired
-    private ILoginMongoRepositoryImpl iLoginMongoRepository;
+    private IUserMongoRepository repository;
 
     @Override
-    public String getLogin(LoginViewModel loginViewModel) {
+    public String doLogin(String userName, String password) {
+        String msg = null;
+        User user = repository.getUser(userName, password);
+        if (user == null) {
+            msg = "Either Username or Password is incorrect";
+        } else if (user.getStatus().equals("A")) {
+            msg = "Welcome " + userName;
+        } else {
+            msg = "User Name - " + userName + " is Inactive";
+        }
+        return msg;
+    }
+
+
+    /*@Override
+    public String doLogin( St) {
         String msg = "Login Failed";
-        List<dbUserDetails> dbUserDetails = iLoginMongoRepository.getLogin();
+        List<dbUserDetails> dbUserDetails = repository.getUser();
         for (dbUserDetails user : dbUserDetails) {
             if (loginViewModel.getUserName().equals(user.getUserName())) {
                 if (user.getStatus().equals("active")) {
@@ -37,5 +49,5 @@ public class LoginServiceImpl implements ILoginService {
             }
         }
         return msg;
-    }
+    }*/
 }

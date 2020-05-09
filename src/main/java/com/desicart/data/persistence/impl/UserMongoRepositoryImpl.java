@@ -4,6 +4,8 @@ import com.desicart.data.model.User;
 import com.desicart.data.persistence.IUserMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -28,5 +30,13 @@ public class UserMongoRepositoryImpl implements IUserMongoRepository {
         return userList;
     }
 
+    @Override
+    public User getUser(String userName, String password) {
+        Query query = new Query ();
+        query.addCriteria(Criteria.where("user_name").is(userName));
+        query.addCriteria(Criteria.where("pw").is(password));
+        User user = mongoTemplate.findOne(query, User.class, "User");
+        return user;
+    }
 
 }

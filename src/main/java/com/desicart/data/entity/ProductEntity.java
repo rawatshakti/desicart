@@ -1,6 +1,5 @@
 package com.desicart.data.entity;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 

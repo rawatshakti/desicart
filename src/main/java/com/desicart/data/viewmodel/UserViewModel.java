@@ -1,4 +1,4 @@
-package com.desicart.data.model;
+package com.desicart.data.viewmodel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @NoArgsConstructor
 @ToString
 
-public class User {
+public class UserViewModel {
     @Id
     @Field("_id")
     private String id;
@@ -20,10 +20,10 @@ public class User {
     private String firstName;
     @Field("last_name")
     private String lastName;
-    @Field("user_name")
+    @Field("userName")
     private String userName;
-    @Field("pw")
-    private String passWord;
+    @Field("password")
+    private String password;
     @Field("email_addrs")
     private String email;
     @Field("phone_number")
@@ -36,8 +36,6 @@ public class User {
     private String payment;
     @Field("status")
     private String status;
-
-
 
 //    public User(String id, String firstName, String lastName, String userName, String passWord, String email, String phoneNumber, String type, String address, String payment) {
 //        this.id = id;
